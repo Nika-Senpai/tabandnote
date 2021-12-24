@@ -17,36 +17,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewPager2 : ViewPager2
     private lateinit var viewPagerFragmentAdapter : ViewPagerFragmentAdapter
 
-    private lateinit var editTextNote : EditText
-    private lateinit var buttonAdd : Button
-    private lateinit var textView : TextView
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val sharedPreferences = getSharedPreferences("amateratsu", MODE_PRIVATE)
-        val text = sharedPreferences.getString("shinigami", "bijo bijuna")
-
         init()
-        textView.text = text
-        buttonAdd.setOnClickListener {
-            var note = editTextNote.text.toString()
-            var text = textView.text.toString()
-            var result = note + "\n" + text
-            textView.text = result
-
-            sharedPreferences.edit().putString("shinigami", result).apply()
-
-
-        }
-
-
-
 
         viewPager2.adapter = viewPagerFragmentAdapter
         TabLayoutMediator(tabLayout, viewPager2) {tab, position ->
-
+            tab.text =  "tab${position+1}"
             when(position) {
                 0 -> {
                     tab.text = "First Gear"
@@ -63,21 +44,10 @@ class MainActivity : AppCompatActivity() {
         }.attach()
     }
 
-
-    private fun init() {
-        tabLayout = findViewById(R.id. tabLayout)
-        viewPager2 = findViewById(R.id. viewPager2)
+    private fun init(){
+        tabLayout = findViewById(R.id.tabLayout)
+        viewPager2 = findViewById(R.id.viewPager2)
         viewPagerFragmentAdapter = ViewPagerFragmentAdapter(this)
-
-        editTextNote = findViewById(R.id. editTextNote)
-        buttonAdd = findViewById(R.id. buttonAdd)
-        textView = findViewById(R.id. textView)
-
-
     }
-
-
-
-
 
 }
