@@ -46,12 +46,16 @@ class MainActivity : AppCompatActivity() {
 
         viewPager2.adapter = viewPagerFragmentAdapter
         TabLayoutMediator(tabLayout, viewPager2) {tab, position ->
+
             when(position) {
                 0 -> {
-                    tab.text = "First page"
+                    tab.text = "First Gear"
                 }
                 1 -> {
-                    tab.text = "Second page"
+                    tab.text = "Gear secando"
+                }
+                2 -> {
+                    tab.text = "Gear notes"
                 }
 
             }
